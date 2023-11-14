@@ -3,13 +3,22 @@ interface Props {
 	title: string;
 	body: string;
 	href: string;
+	image: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, image } = Astro.props;
 ---
 
 <li class="link-card">
 	<a href={href}>
+		<img 
+			src={image}
+			alt="Avatar"
+			width="40"
+			height="40"
+			class="rounded-image"
+		/>
+		
 		<h2>
 			{title}
 			<span>&rarr;</span>
@@ -57,5 +66,11 @@ const { href, title, body } = Astro.props;
 	}
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
+	}
+	.rounded-image {
+		border-radius: 50%; /* Ceci rend l'image complètement ronde */
+		width: 100px; /* Ajustez la largeur selon vos besoins */
+		height: 100px; /* Ajustez la hauteur selon vos besoins */
+		object-fit: cover; /* Assure que l'image couvre toute la zone sans être déformée */
 	}
 </style>
